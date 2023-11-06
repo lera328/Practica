@@ -10,19 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace practica
 {
 	/// <summary>
-	/// Логика взаимодействия для MainWindow.xaml
+	/// Логика взаимодействия для Window1.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class Window1 : Window
 	{
-		public MainWindow()
+		public Window1()
 		{
 			InitializeComponent();
+		}
+
+		private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+		{
+			using(UserContext db=new UserContext())
+			{
+				var Users = db.Users.ToList();
+				dataGrid.ItemsSource = Users;
+			}
 		}
 	}
 }
